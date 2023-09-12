@@ -1,5 +1,18 @@
 version: '3.8'
 services:
+  camunda:
+    build:
+      context: spring-camunda
+      dockerfile: Dockerfile
+    depends_on:
+      rest-api:
+        condition: service_started
+    environment:
+      SERVICE_USERS_URL: http://rest-api:8080/api/users
+    ports:
+      - '8080:8080'
+    networks:
+      - spring-boot-camunda-http-task-network
   rest-api:
     build:
       context: spring-rest-api
@@ -9,8 +22,6 @@ services:
         condition: service_started
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
-    ports:
-      - '8080:8080'
     networks:
       - spring-boot-camunda-http-task-network
   db:

@@ -1,0 +1,22 @@
+camunda.bpm.admin-user:
+  id: admin
+  password: admin
+spring:
+  datasource:
+    url: jdbc:h2:file:./camunda-h2-database
+server:
+  port: 8080
+  shutdown: graceful
+  servlet:
+    context-path: /camunda-bpmn
+service:
+  users:
+    url: http://localhost:8080/api/users
+logging:
+  level:
+    '[com.lliscano.workflow]': DEBUG
+    '[org.camunda.bpm.connect]': DEBUG
+    '[org.apache.http.headers]': DEBUG
+    '[org.apache.http.wire]': DEBUG
+    '[connectjar.org.apache.http.headers]': DEBUG
+    '[connectjar.org.apache.http.wire]': DEBUG
