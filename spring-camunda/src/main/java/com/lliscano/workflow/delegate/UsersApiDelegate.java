@@ -1,7 +1,6 @@
 package com.lliscano.workflow.delegate;
 
 import com.lliscano.workflow.dto.ResponseDTO;
-import com.lliscano.workflow.dto.UserDTO;
 import com.lliscano.workflow.rest.RestService;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
