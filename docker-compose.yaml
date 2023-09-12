@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  rest-api:
+    build:
+      context: spring-rest-api
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_started
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+    ports:
+      - '8080:8080'
+    networks:
+      - spring-boot-camunda-http-task-network
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - spring-boot-camunda-http-task-network
+    volumes:
+      - db_rest:/var/lib/postgresql/data
+      - ./scripts/data.sql:/docker-entrypoint-initdb.d/data.sql
+networks:
+  spring-boot-camunda-http-task-network:
+    driver: bridge
+volumes:
+  db_rest:
+    driver: local
