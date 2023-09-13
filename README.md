@@ -10,7 +10,7 @@
 - Docker | Docker Compose
 
 
-## Build
+## Build (Opcional)
 
 ```shell
 mvn clean package
@@ -25,5 +25,12 @@ docker-compose -f docker-compose.yaml -p spring-boot-camunda-http-task up -d --b
 ## Down
 
 ```shell
-docker-compose.yaml -p spring-boot-camunda-http-task down --remove-orphans --volumes
+docker-compose.yaml -p spring-boot-camunda-http-task down --rmi local --remove-orphans --volumes
 ```
+
+
+## Arquitectura
+![CAMUNDA-HTTP-TASK](./camunda-http-task.gif "CAMUNDA-HTTP-TASK")
+
+## Camunda workflow
+![WORKFLOW](./workflow.png "WORKFLOW")
